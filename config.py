@@ -1,9 +1,11 @@
-DEPRESSION_LEXICON = {
-    "hopeless": 3, "useless": 3, "die": 5, "death": 5,
-    "sad": 1, "tired": 1, "alone": 2, "lonely": 2,
-    "no hope": 4, "cannot sleep": 2, "anxiety":3, 
-    "depression":5
-}
+from preprocess_lexicon import load_lexicon
+
+#DEPRESSION_LEXICON = {
+#    "hopeless": 3, "useless": 3, "die": 5, "death": 5,
+#    "sad": 1, "tired": 1, "alone": 2, "lonely": 2,
+#    "no hope": 4, "cannot sleep": 2, "anxiety":3, 
+#    "depression":5
+#}
 
 SUICIDE_PATTERNS = {
     "want to die": 7,
@@ -22,3 +24,6 @@ INTENSIFIERS = {
     "really": 1.3,
     "so": 1.3
 }
+
+DEPRESSION_LEXICON = load_lexicon("data/depression_lexicon.xlsx")
+

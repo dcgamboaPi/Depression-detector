@@ -8,14 +8,7 @@ def normalize_text(text):
     text = re.sub(r"(.)\1{2,}", r"\1\1", text)  # normalize repetition
     text = text.encode("ascii", "ignore").decode()
 
-
-
-
-
     return text
-
-
-
 
 def tokenize(text):
     return re.findall(r'\b\w+\b', text)

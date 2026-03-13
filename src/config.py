@@ -25,5 +25,5 @@ INTENSIFIERS = {
     "so": 1.3
 }
 
-DEPRESSION_LEXICON = load_lexicon("data/depression_lexicon.xlsx")
+DEPRESSION_LEXICON = load_lexicon("../data/depression_lexicon.xlsx")
 

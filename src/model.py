@@ -1,47 +1,68 @@
 from collections import Counter
+from dataclasses import dataclass
 
-from config import *
-from preprocessing import *
-from suicide_detector import detect_suicide_patterns
+from config import (
+    DEPRESSION_LEXICON,
+    INTENSIFIERS,
+    NEGATIONS,
+    STOP_NEGATION,
+    SUICIDE_PATTERNS,
+)
 from lexicon_detector import detect_lexicon
 from lexicon_phrases import detect_lexicon_phrases
-from scoring import depression_level, suicide_level
+from preprocessing import normalize_text, tokenize
+from scoring import DepressionResult, SuicideResult, depression_level, suicide_level
+from suicide_detector import detect_suicide_patterns
 
 
-def analyze_depression(text):
+@dataclass
+class AnalysisResult:
+    raw_score: float
+    depression: DepressionResult
+    suicide: SuicideResult
+    patterns_found: list[tuple[str, int]]   # (term, count)
+    normalized_text: str                    # useful for debugging
 
-    text = normalize_text(text)
 
-    # suicide patterns detection
+def analyze(text: str) -> AnalysisResult:
+    """
+    Full depression-language analysis pipeline.
 
-    suicide_score, suicide_patterns, text = detect_suicide_patterns(
-        text, SUICIDE_PATTERNS, NEGATIONS
+    Order of operations
+    -------------------
+    1. Normalize text (emoji tokens, lowercase, clean).
+    2. Detect suicide patterns first — they carry the highest weights
+       and their spans are blanked before lexicon scoring.
+    3. Detect multi-word lexicon phrases (longest-match, negation-aware).
+    4. Detect single-word lexicon terms + emoji tokens.
+    5. Aggregate scores and map to severity levels.
+    """
+    normalized = normalize_text(text)
+    working_text = normalized
+
+    # 1. Suicide patterns
+    suicide_score, suicide_hits, working_text = detect_suicide_patterns(
+        working_text, SUICIDE_PATTERNS, NEGATIONS
     )
 
-    words = tokenize(text)
-
-    # depression sentences detection
-    phrase_score, phrase_patterns, text = detect_lexicon_phrases(
-        text, DEPRESSION_LEXICON
+    # 2. Multi-word lexicon phrases
+    phrase_score, phrase_hits, working_text = detect_lexicon_phrases(
+        working_text, DEPRESSION_LEXICON, NEGATIONS
     )
 
-    # depression simple words detection
-
-    lex_score, lex_patterns = detect_lexicon(
-        words,
-        DEPRESSION_LEXICON,
-        NEGATIONS,
-        STOP_NEGATION,
-        INTENSIFIERS
+    # 3. Single-word + emoji tokens
+    words = tokenize(working_text)
+    word_score, word_hits = detect_lexicon(
+        words, DEPRESSION_LEXICON, NEGATIONS, STOP_NEGATION, INTENSIFIERS
     )
 
-    total_score = suicide_score + phrase_score + lex_score
+    total = suicide_score + phrase_score + word_score
+    all_hits = suicide_hits + phrase_hits + word_hits
 
-    patterns = suicide_patterns + phrase_patterns + lex_patterns
-
-    return {
-        "total_score": total_score,
-        "patterns_found": Counter(patterns).most_common(),
-        "depression_level": depression_level(total_score),
-        "suicide_risk": suicide_level(suicide_score)
-    }
+    return AnalysisResult(
+        raw_score=round(total, 2),
+        depression=depression_level(total),
+        suicide=suicide_level(suicide_score),
+        patterns_found=Counter(all_hits).most_common(),
+        normalized_text=normalized,
+    )

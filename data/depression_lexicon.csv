@@ -1,0 +1,211 @@
+category,term_or_phrase,term_type,weight_1_to_5,sentiment
+self_focus,I,word,1,negative
+self_focus,me,word,1,negative
+self_focus,my,word,1,negative
+self_focus,mine,word,1,negative
+self_focus,myself,word,1,negative
+self_focus,I feel,phrase,2,negative
+self_focus,I am,phrase,1,negative
+self_focus,I’m,word,1,negative
+self_focus,"me, myself, and I",phrase,1,negative
+negative_affect,sad,word,2,negative
+negative_affect,empty,word,3,negative
+negative_affect,hopeless,word,4,negative
+negative_affect,numb,word,3,negative
+negative_affect,miserable,word,3,negative
+negative_affect,exhausted,word,2,negative
+negative_affect,tired,word,1,negative
+negative_affect,lonely,word,3,negative
+negative_affect,worthless,word,4,negative
+negative_affect,broken,word,3,negative
+negative_affect,ashamed,word,3,negative
+negative_affect,guilty,word,3,negative
+negative_affect,hurt,word,2,negative
+negative_affect,pain,word,2,negative
+negative_affect,drained,word,2,negative
+negative_affect,down,word,1,negative
+negative_affect,low,word,1,negative
+negative_affect,worn out,phrase,2,negative
+negative_affect,overwhelmed,word,2,negative
+negative_affect,stuck,word,3,negative
+negative_affect,heavy,word,2,negative
+negative_affect,dark,word,2,negative
+self_deprecation,useless,word,4,negative
+self_deprecation,failure,word,3,negative
+self_deprecation,burden,word,4,negative
+self_deprecation,pathetic,word,3,negative
+self_deprecation,disgusting,word,3,negative
+self_deprecation,not enough,phrase,3,negative
+self_deprecation,hate myself,phrase,5,negative
+self_deprecation,nobody cares about me,phrase,4,negative
+self_deprecation,I’m a mess,phrase,3,negative
+self_deprecation,I am a burden,phrase,5,negative
+self_deprecation,I’m worthless,phrase,5,negative
+self_deprecation,I am useless,phrase,5,negative
+self_deprecation,I ruin everything,phrase,4,negative
+self_deprecation,I’m not enough,phrase,4,negative
+self_deprecation,I hate who I am,phrase,5,negative
+anhedonia,I don’t enjoy anything,phrase,5,negative
+anhedonia,nothing feels good,phrase,5,negative
+anhedonia,I can’t feel anything,phrase,4,negative
+anhedonia,I don’t care anymore,phrase,4,negative
+anhedonia,everything feels pointless,phrase,5,negative
+anhedonia,I’ve lost interest,phrase,4,negative
+anhedonia,nothing is fun anymore,phrase,5,negative
+anhedonia,I don’t want anything,phrase,4,negative
+anhedonia,I can’t enjoy things,phrase,4,negative
+anhedonia,I feel nothing,phrase,4,negative
+anhedonia,nothing excites me,phrase,4,negative
+anhedonia,I don’t look forward to anything,phrase,4,negative
+fatigue_cognitive,I’m so tired,phrase,2,negative
+fatigue_cognitive,no energy,phrase,3,negative
+fatigue_cognitive,can’t get out of bed,phrase,4,negative
+fatigue_cognitive,exhausted all the time,phrase,4,negative
+fatigue_cognitive,can’t focus,phrase,2,negative
+fatigue_cognitive,brain fog,phrase,2,negative
+fatigue_cognitive,everything feels hard,phrase,3,negative
+fatigue_cognitive,too tired to do anything,phrase,4,negative
+fatigue_cognitive,I can’t think straight,phrase,3,negative
+fatigue_cognitive,no motivation,phrase,3,negative
+fatigue_cognitive,I can’t function,phrase,4,negative
+fatigue_cognitive,I have no energy,phrase,3,negative
+fatigue_cognitive,I feel drained all the time,phrase,4,negative
+fatigue_cognitive,I’m mentally exhausted,phrase,3,negative
+fatigue_cognitive,I can’t do basic things,phrase,4,negative
+social_withdrawal,leave me alone,phrase,2,negative
+social_withdrawal,I don’t want to talk,phrase,3,negative
+social_withdrawal,I’m done with people,phrase,3,negative
+social_withdrawal,no one understands me,phrase,3,negative
+social_withdrawal,I feel disconnected,phrase,4,negative
+social_withdrawal,I isolate myself,phrase,4,negative
+social_withdrawal,I want to disappear,phrase,5,negative
+social_withdrawal,I don’t want to see anyone,phrase,4,negative
+social_withdrawal,I’ve been avoiding everyone,phrase,4,negative
+social_withdrawal,I just want to be alone,phrase,3,negative
+social_withdrawal,I shut everyone out,phrase,4,negative
+social_withdrawal,I don’t reply to anyone,phrase,3,negative
+social_withdrawal,I feel distant from everyone,phrase,4,negative
+social_withdrawal,I don’t belong anywhere,phrase,4,negative
+social_withdrawal,I can’t connect with people,phrase,4,negative
+hopeless_future,there’s no future,phrase,5,negative
+hopeless_future,nothing will change,phrase,5,negative
+hopeless_future,it will never get better,phrase,5,negative
+hopeless_future,I can’t see a way forward,phrase,5,negative
+hopeless_future,what’s the point of tomorrow,phrase,5,negative
+hopeless_future,I have nothing to look forward to,phrase,4,negative
+hopeless_future,my future feels empty,phrase,4,negative
+hopeless_future,I can’t imagine a future,phrase,4,negative
+hopeless_future,there’s nothing ahead for me,phrase,4,negative
+hopeless_future,I don’t see things getting better,phrase,4,negative
+hopeless_future,the future feels pointless,phrase,4,negative
+hopeless_future,I’m stuck and nothing changes,phrase,4,negative
+absolutist,always,word,1,negative
+absolutist,never,word,2,negative
+absolutist,nothing,word,2,negative
+absolutist,completely,word,1,negative
+absolutist,entirely,word,1,negative
+absolutist,totally,word,1,negative
+absolutist,everyone,word,1,negative
+absolutist,no one,phrase,2,negative
+absolutist,forever,word,2,negative
+absolutist,all the time,phrase,2,negative
+absolutist,every single day,phrase,2,negative
+absolutist,nothing matters,phrase,4,negative
+sleep_disturbance,I can’t sleep,phrase,3,negative
+sleep_disturbance,I haven’t slept,phrase,3,negative
+sleep_disturbance,I sleep all day,phrase,3,negative
+sleep_disturbance,I don’t want to get out of bed,phrase,4,negative
+sleep_disturbance,awake all night,phrase,3,negative
+sleep_disturbance,sleeping too much,phrase,3,negative
+sleep_disturbance,I barely sleep,phrase,3,negative
+sleep_disturbance,my sleep is messed up,phrase,2,negative
+appetite_body,I’m not eating,phrase,4,negative
+appetite_body,I forget to eat,phrase,3,negative
+appetite_body,I have no appetite,phrase,3,negative
+appetite_body,food tastes like nothing,phrase,4,negative
+appetite_body,I’m eating too much,phrase,3,negative
+appetite_body,I feel sick all the time,phrase,2,negative
+appetite_body,my body feels heavy,phrase,2,negative
+appetite_body,I can’t even eat,phrase,4,negative
+irritability_anger,angry,word,2,negative
+irritability_anger,irritated,word,2,negative
+irritability_anger,frustrated,word,1,negative
+irritability_anger,annoyed at everything,phrase,3,negative
+irritability_anger,everything pisses me off,phrase,3,negative
+irritability_anger,I snap at everyone,phrase,3,negative
+irritability_anger,I’m mad all the time,phrase,3,negative
+irritability_anger,I’m so angry for no reason,phrase,3,negative
+irritability_anger,I can’t stand anyone,phrase,3,negative
+irritability_anger,I hate everything,phrase,4,negative
+genz_colloquial,depressy,word,2,negative
+genz_colloquial,dead inside,phrase,3,negative
+genz_colloquial,not okay,phrase,2,negative
+genz_colloquial,spiraling,word,3,negative
+genz_colloquial,crashing,word,2,negative
+genz_colloquial,numb af,phrase,3,negative
+genz_colloquial,empty inside,phrase,3,negative
+genz_colloquial,I’m not doing well,phrase,2,negative
+genz_colloquial,I’m mentally gone,phrase,3,negative
+genz_colloquial,I can’t even,phrase,1,negative
+burnout_overlap,burned out,phrase,2,negative
+burnout_overlap,mentally exhausted,phrase,3,negative
+burnout_overlap,emotionally drained,phrase,3,negative
+burnout_overlap,can’t do this anymore,phrase,4,negative
+burnout_overlap,checked out,phrase,2,negative
+burnout_overlap,running on empty,phrase,3,negative
+burnout_overlap,done with everything,phrase,4,negative
+burnout_overlap,life feels like too much,phrase,4,negative
+wellbeing,happy,word,-3,positive
+wellbeing,grateful,word,-3,positive
+wellbeing,thankful,word,-3,positive
+wellbeing,excited,word,-3,positive
+wellbeing,great,word,-2,positive
+wellbeing,wonderful,word,-3,positive
+wellbeing,joyful,word,-4,positive
+wellbeing,content,word,-3,positive
+wellbeing,at peace,phrase,-4,positive
+wellbeing,feeling good,phrase,-3,positive
+wellbeing,feeling better,phrase,-4,positive
+wellbeing,I'm okay,phrase,-3,positive
+wellbeing,I'm fine,phrase,-2,positive
+hopeful_future,hopeful,word,-4,positive
+hopeful_future,looking forward to,phrase,-4,positive
+hopeful_future,can't wait,phrase,-3,positive
+hopeful_future,excited about,phrase,-4,positive
+hopeful_future,things will get better,phrase,-5,positive
+hopeful_future,bright future,phrase,-4,positive
+hopeful_future,new beginning,phrase,-4,positive
+hopeful_future,tomorrow will be better,phrase,-5,positive
+social_connection,friends,word,-2,positive
+social_connection,family,word,-2,positive
+social_connection,love you,phrase,-3,positive
+social_connection,hanging out,phrase,-3,positive
+social_connection,spending time with,phrase,-3,positive
+social_connection,we laughed,phrase,-4,positive
+social_connection,surrounded by people,phrase,-4,positive
+energy_activity,energized,word,-4,positive
+energy_activity,motivated,word,-4,positive
+energy_activity,productive,word,-3,positive
+energy_activity,accomplished,word,-4,positive
+energy_activity,went for a walk,phrase,-3,positive
+energy_activity,worked out,phrase,-3,positive
+energy_activity,got out of bed,phrase,-4,positive
+energy_activity,finished,word,-2,positive
+recovery,therapy,word,-3,positive
+recovery,getting help,phrase,-5,positive
+recovery,talked to someone,phrase,-5,positive
+recovery,in recovery,phrase,-5,positive
+recovery,making progress,phrase,-4,positive
+recovery,feels manageable,phrase,-4,positive
+recovery,coping,word,-3,positive
+recovery,self-care,word,-3,positive
+recovery,taking my meds,phrase,-4,positive
+enjoyment,enjoyed,word,-4,positive
+enjoyment,had fun,phrase,-4,positive
+enjoyment,loved it,phrase,-4,positive
+enjoyment,laughed,word,-4,positive
+enjoyment,delicious,word,-3,positive
+enjoyment,beautiful,word,-2,positive
+enjoyment,so good,phrase,-3,positive
+enjoyment,amazing,word,-3,positive
+negative_affect,negative,word,3,negative

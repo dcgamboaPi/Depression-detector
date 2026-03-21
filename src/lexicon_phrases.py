@@ -1,44 +1,63 @@
-def detect_lexicon_phrases(text, lexicon):
+def detect_lexicon_phrases(
+    text: str,
+    lexicon: dict[str, int | float],
+    negations: set[str],
+) -> tuple[float, list[str], str]:
     """
-    Detect multi-word lexicon phrases in a text and compute their weighted score.
+    Detect multi-word lexicon phrases in *text* and return their
+    weighted score.
 
-    This function scans the input text for phrases (multi-word expressions)
-    defined in a lexicon. If a phrase is found, its associated weight is added
-    to the total score and the phrase is recorded.
-
-    After detecting a phrase, it is removed from the text to prevent double
-    counting if the same phrase appears multiple times during subsequent checks.
+    Improvements over the original:
+    - Phrases are evaluated longest-first so that "no reason to live"
+      is matched before "reason to live" or "live".
+    - A simple negation check inspects the 15-character window
+      immediately before each phrase match (same approach as
+      suicide_detector) so "I don't feel hopeless" won't score.
+    - Matched spans are blanked out to prevent double-counting by the
+      single-word scorer that runs afterwards.
 
     Parameters
     ----------
     text : str
-        Input text to analyze.
-
-    lexicon : dict[str, int]
-        Dictionary mapping phrases to their corresponding weight.
+        Normalized input text.
+    lexicon : dict[str, int | float]
+        Term/phrase → weight mapping.
+    negations : set[str]
+        Words that negate a match.
 
     Returns
     -------
-    score : int
-        Total score obtained from detected phrases.
-
+    score : float
+        Sum of weights for all detected (non-negated) phrases.
     found : list[str]
-        List of detected phrases.
-
+        Phrases that were matched (and not negated).
     text : str
-        Modified text with detected phrases removed to avoid double counting.
+        Text with matched phrases blanked out.
     """
-    score = 0
-    found = []
+    score: float = 0.0
+    found: list[str] = []
 
-    for phrase, weight in lexicon.items():
+    # Only multi-word entries, sorted longest first to prefer specific matches
+    phrases = sorted(
+        [(p, w) for p, w in lexicon.items() if " " in p],
+        key=lambda x: len(x[0]),
+        reverse=True,
+    )
 
-        if " " in phrase and phrase in text:
+    for phrase, weight in phrases:
+        if phrase not in text:
+            continue
 
-            score += weight
-            found.append(phrase)
+        index = text.find(phrase)
+        context = text[max(0, index - 20): index]
 
-            # evitar doble conteo después
-            text = text.replace(phrase, "")
+        if any(neg in context.split() for neg in negations):
+            # Negated — blank it out anyway to avoid single-word sub-matches
+            text = text.replace(phrase, " ", 1)
+            continue
+
+        score += weight
+        found.append(phrase)
+        text = text.replace(phrase, " ", 1)
 
     return score, found, text

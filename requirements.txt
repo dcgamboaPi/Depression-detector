@@ -18,3 +18,4 @@ kagglehub
 google-genai
 python-dotenv
 openai  
+google-generativeai

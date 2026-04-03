@@ -1,29 +1,34 @@
-from model import analyze
+import kagglehub
+import pandas as pd
+
+from core.model import analyze
+from core.preprocessing import normalize_text
+from services.openai_service import extract_diagnostico
+from utils.aggredate import build_user_features
+
+pd.set_option("display.max_colwidth", None)
+
+# Descargar y leer dataset
+path = kagglehub.dataset_download("infamouscoder/mental-health-social-media")
+df_depression = pd.read_csv(f"{path}/Mental-Health-Twitter.csv")
+
+# Método 1 — lexicón
+df_depression["text_normalize"] = df_depression["post_text"].apply(normalize_text)
+df_depression["score"] = df_depression["post_text"].apply(lambda t: analyze(t).raw_score)
+
+# Método 2 — LLM
+df_sample = df_depression.tail(20).copy()
+df_sample["openai"] = df_sample["post_text"].apply(extract_diagnostico)
 
 
-TEST_CASES = [
-    "I feel sad and nobody cares about me 😟 😕 😥. #sad",
-    "I don't want to live anymore. Everything is hopeless and I'm so tired.",
-    "I'm not depressed, I'm actually doing really well today 😊",
-    "Extremely lonely and worthless. I can't sleep, I can't eat.",
-    "I want to die. There's no reason to live.",
-    "I don't want to die — I just want to feel better. Going to therapy helped.",
-    "Feeling grateful and hopeful. Had fun with friends today 🎉",
-]
 
 
-def print_result(text: str) -> None:
-    print("─" * 60)
-    print(f"INPUT   : {text}")
-    result = analyze(text)
-    print(f"SCORE   : {result.raw_score}")
-    print(f"DEPRESS : [{result.depression.level.upper()}] {result.depression.label}")
-    print(f"SUICIDE : [{result.suicide.risk.upper()}] {result.suicide.label}")
-    if result.patterns_found:
-        print(f"HITS    : {result.patterns_found}")
-    print()
+df_depression["timestamp"] = pd.to_datetime(df_depression["post_created"])
+df_depression["hour"]      = df_depression["timestamp"].dt.hour
+df_depression["dayofweek"] = df_depression["timestamp"].dt.dayofweek
 
 
-if __name__ == "__main__":
-    for t in TEST_CASES:
-        print_result(t)
+user_features = df_depression.groupby("user_id").apply(build_user_features).reset_index()
+print(user_features.head(10))
+
+user_features.to_excel("prueba.xlsx")

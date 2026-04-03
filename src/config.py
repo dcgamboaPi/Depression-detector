@@ -1,4 +1,4 @@
-from preprocess_lexicon import load_lexicon
+from core.preprocess_lexicon import load_lexicon
 
 # ─────────────────────────────────────────────
 # Suicide patterns — weights are intentionally

@@ -27,3 +27,4 @@ def print_result(text: str) -> None:
 if __name__ == "__main__":
     for t in TEST_CASES:
         print_result(t)
+

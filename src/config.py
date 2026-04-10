@@ -185,5 +185,5 @@ EMOJI_SENTIMENT: dict[str, str] = {
 EMOJI_WEIGHT: int = 2
 
 # Load lexicon from CSV (term → weight, negative = positive score, positive = negative score)
-DEPRESSION_LEXICON: dict[str, int] = load_lexicon("./data/depression_lexicon.csv")
+DEPRESSION_LEXICON: dict[str, int] = load_lexicon("../data/depression_lexicon.csv")
 emoji_sentiment = EMOJI_SENTIMENT

@@ -19,3 +19,7 @@ google-genai
 python-dotenv
 openai  
 google-generativeai
+
+fastapi
+pydantic
+uvicorn

@@ -35,7 +35,7 @@ if st.button("🔍 Analizar Comentario"):
                 response_ai = extract_diagnostico(comentario)
                 response_reglas = analyze(comentario).raw_score
 
-                if response_reglas < 0: 
+                if response_reglas < 1: 
                     response_lexicon = 0
                 else: 
                     response_lexicon = 1

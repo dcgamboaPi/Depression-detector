@@ -8,11 +8,11 @@ from config import (
     STOP_NEGATION,
     SUICIDE_PATTERNS,
 )
-from lexicon_detector import detect_lexicon
-from lexicon_phrases import detect_lexicon_phrases
-from preprocessing import normalize_text, tokenize
-from scoring import DepressionResult, SuicideResult, depression_level, suicide_level
-from suicide_detector import detect_suicide_patterns
+from core.lexicon_detector import detect_lexicon
+from core.lexicon_phrases import detect_lexicon_phrases
+from core.preprocessing import normalize_text, tokenize
+from core.scoring import DepressionResult, SuicideResult, depression_level, suicide_level
+from core.suicide_detector import detect_suicide_patterns
 
 
 @dataclass

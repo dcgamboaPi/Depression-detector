@@ -5,8 +5,7 @@ def render_header():
     st.title("🧠 MindScan")
 
     st.markdown("""
-    Esta aplicación utiliza Inteligencia Artificial para identificar señales
-    de tristeza profunda o depresión en comentarios de redes sociales.
+    This application uses Artificial Intelligence to identify signs of deep sadness or depression in social media comments.
     """)
 
     st.divider()
@@ -15,5 +14,5 @@ def render_header():
 def render_sidebar():
 
     st.sidebar.info(
-        "Prototipo creado con Streamlit y Gemini 2.5 Flash."
+        "Prototype created with Streamlit and GPT-4.1-mini."
     )

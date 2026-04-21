@@ -8,7 +8,7 @@ from sklearn.metrics import (
 )
 
 # 1. Cargar resultados
-df = pd.read_csv("../data/output_scores.csv")
+df = pd.read_csv("./data/output_scores.csv")
 
 # 2. Convertir a binario
 df["pred_binary"] = df["depression_level"].apply(
@@ -33,5 +33,29 @@ sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
 plt.xlabel("Predicho")
 plt.ylabel("Real")
 plt.title("Matriz de Confusión - Depression Detector")
+plt.tight_layout()
+plt.show()
+
+
+
+
+# 3. Métricas numéricas
+print("=== ACCURACY MODEL 2 ===")
+print(accuracy_score(df["label"], df["openai"]))
+
+print("\n=== PRECISION, RECALL, F1 MODEL 2===")
+print(classification_report(df["label"], df["openai"]))
+
+print("\n=== MATRIZ DE CONFUSIÓN MODEL 2===")
+print(confusion_matrix(df["label"], df["openai"]))
+
+# 4. Matriz de confusión visual
+cm = confusion_matrix(df["label"], df["openai"])
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=["No depresión", "Depresión"],
+            yticklabels=["No depresión", "Depresión"])
+plt.xlabel("Predicho")
+plt.ylabel("Real")
+plt.title("Matriz de Confusión - Depression Detector 2")
 plt.tight_layout()
 plt.show()

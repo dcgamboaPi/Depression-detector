@@ -1,9 +1,8 @@
 import streamlit as st
-import json
-import ast
-from services.openai_service import extract_diagnostico
 from ui.layout import render_header, render_sidebar
-from core.model import analyze
+import requests
+
+url = "https://dcgamboap-depression-model.hf.space/items"
 
 # CONFIG
 st.set_page_config(
@@ -16,41 +15,38 @@ render_header()
 render_sidebar()
 
 comentario = st.text_area(
-    "Introduce el comentario a analizar:",
-    placeholder="Ej: Me siento muy solo últimamente..."
+    "Enter the comment to analyze:",
+    placeholder="E.g.: I’ve been feeling very lonely lately..."
 )
 
-if st.button("🔍 Analizar Comentario"):
+if st.button("🔍 Analyze Comment"):
 
     if not comentario.strip():
 
-        st.warning("Por favor escribe un comentario")
+        st.warning("Please write a comment")
 
     else:
 
-        with st.spinner("openAI está pensando..."):
+        with st.spinner("OpenAI is thinking..."):
 
             try:
 
-                response_ai = extract_diagnostico(comentario)
-                response_reglas = analyze(comentario).raw_score
+                r = requests.post(
+                    url,
+                    json={"comment": comentario}
+                )
 
-                if response_reglas < 0: 
-                    response_lexicon = 0
-                else: 
-                    response_lexicon = 1
+                response = r.json()
+                resultado = response["item"]
+                if resultado == 1:
 
-                response = max(response_ai, response_lexicon)
-
-                if response == 1:
-
-                    st.error("🚨 Resultado: 1 (Posible indicador de depresión)")
-                    st.info("Esto no sustituye diagnóstico médico")
+                    st.error("🚨 Result: 1 (Possible indicator of depression)")
+                    st.info("This does not replace a medical diagnosis.")
                     
 
-                elif response == 0:
+                elif resultado == 0:
 
-                    st.success("✅ Resultado: 0 (No se detectan señales)")
+                    st.success("✅ Result: 0 (No signs detected)")
 
                 else:
 
@@ -59,3 +55,5 @@ if st.button("🔍 Analizar Comentario"):
             except Exception as e:
 
                 st.error(f"Error técnico: {e}")
+                st.write("Status code:", r.status_code)
+                st.write("Response text:", r.text)

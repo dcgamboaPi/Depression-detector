@@ -1,22 +1,22 @@
 import streamlit as st
-from ui.layout import render_header, render_sidebar
+from ui.layout import render_header, render_sidebar, general_config
 import requests
 
 url = "https://dcgamboap-depression-model.hf.space/items"
 
 # CONFIG
 st.set_page_config(
-    page_title="Detector de Ánimo IA",
+    page_title="mindScan",
     page_icon="🧠"
 )
-
-# UI
 render_header()
 render_sidebar()
+general_config()
 
 comentario = st.text_area(
     "Enter the comment to analyze:",
-    placeholder="E.g.: I’ve been feeling very lonely lately..."
+    placeholder="E.g.: I’ve been feeling very lonely lately...",
+    height=150
 )
 
 if st.button("🔍 Analyze Comment"):
@@ -51,9 +51,10 @@ if st.button("🔍 Analyze Comment"):
                 else:
 
                     st.write(f"Respuesta inesperada: {response}")
-                
+
             except Exception as e:
 
                 st.error(f"Error técnico: {e}")
                 st.write("Status code:", r.status_code)
                 st.write("Response text:", r.text)
+st.caption("Your data is private and is not stored")
